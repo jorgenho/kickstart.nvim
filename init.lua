@@ -6,7 +6,6 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
-
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -67,6 +66,9 @@ vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
+
+-- block cursor in insert mode
+vim.opt.guicursor = ''
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
@@ -611,21 +613,13 @@ require('lazy').setup({
       },
     },
   },
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'catppuccin/nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    name = 'catppuccin',
-    opts = {
-      integrations = {
-        mini = true,
-      },
-    },
-    init = function()
-      vim.cmd.colorscheme 'catppuccin-mocha'
+  {
+    'ellisonleao/gruvbox.nvim',
+    priority = 1000, -- Ensure it loads before other colorschemes
+    config = function()
+      vim.o.background = 'dark' -- Set background to dark
+      vim.g.gruvbox_contrast_dark = 'hard' -- Set dark mode contrast to hard
+      vim.cmd.colorscheme 'gruvbox' -- Apply the colorscheme
     end,
   },
   -- Highlight todo, notes, etc in comments
